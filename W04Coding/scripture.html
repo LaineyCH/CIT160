@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<title>Applied Scripture</title>
+<meta name="author" content="Elaine Henson">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    pre {
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        font-size: 16px;
+    }
+    body {
+        background-color:ivory;
+        padding: 2em;
+        text-align: center;
+    }
+    h1 {
+        font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+    * {
+        color: rgb(70, 37, 15);
+    }
+    #root {
+            display:block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: max-content;
+        }
+</style>
+<script>
+/* Defining Table
+ * Input: A person's name
+ * Processing: Create a verse of scripture for that person
+ * Output: The scripture
+ */
+function applyScripture() {
+    // Get the user's name from the text field that has the id
+    // of "nameInputBox" and store it in a variable named name.
+    let name = document.getElementById('nameInputBox').value;
+
+    if (!name) {
+        name = " ";
+    } else {
+        name = ", <b>" + name + "</b>, "
+    }
+
+    // Use string interpolation to create a verse
+    // of scripture personalized for the user.
+    let scripture = `
+    <pre>
+            Wherefore${name}take unto you the
+            whole armour of God, that ye may be able
+            to withstand in the evil day, and having
+            done all, to stand.
+
+            Stand therefore${name}having your
+            loins girt about with truth, and having on
+            the breastplate of righteousness;
+        
+            And your feet shod with the preparation
+            of the gospel of peace;
+    
+            Above all, taking the shield of faith${name}
+            wherewith ye shall be able to quench
+            all the fiery darts of the wicked.
+      
+            And take the helmet of salvation, and
+            the sword of the Spirit, which is the
+            word of God:
+     
+            Praying always${name}with all prayer
+            and supplication in the Spirit, and
+            watching thereunto with all perseverance
+            and supplication for all saints.
+        <pre>`
+
+    // Display the scripture in the div that has the id "outputDiv".
+    document.getElementById('outputDiv').innerHTML = scripture;
+}
+</script>
+</head>
+
+<body>  
+<div id="root">   
+    <h1>A Personalized Scripture</h1> 
+    <p><i>from Ephesians 6:13-18</i></p>                       
+    Please enter your name: <input type="text" id="nameInputBox">    
+    <button type="button" onclick="applyScripture()">Show Scripture</button>
+    <div id="outputDiv"></div>
+</div>
+</body>       
+</html>

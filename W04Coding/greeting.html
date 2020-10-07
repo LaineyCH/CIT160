@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Elaine Henson">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Greeting Program</title>
+<style>
+    body {
+        background-color:paleturquoise;
+        padding: 2em;
+    }
+    * {
+        color: #000;
+    }
+    #root {
+            display:block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: max-content;
+        }
+</style>
+<script>
+/* Defining Table
+ * Input: A frood's name
+ * Processing: Create a greeting for that frood
+ * Output: The greeting
+ * Frood: a really amazingly together guy/gal
+ */
+function greetFrood() {
+    // This line prompts the frood (user) to type in their name. Should be read in a very depressed voice.
+    let name = prompt("Here I am, brain the size of a planet and they tell me to ask you what your name is?");
+
+    /* Check if there's a valid input.  
+     * If not, display a message.
+     * If it's valid, display a personalised greeting.
+     */
+    if (!name) {
+        alert("The secret is to bang two rocks together, guys!");
+    } else {
+        alert("Greetings " + name + ".  I hope you know where your towel is!");
+    }
+}
+</script>
+</head>
+
+<body>
+    <div id="root">   
+        <!-- Display a yellow button with the words "Don't Panic" in large, friendly letters. -->                               
+        <button type="button" style="height:100px;width:150px;background-color:rgb(247, 244, 97);font-size:xx-large; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;" onclick="greetFrood()">Don't Panic</button>
+    </div>
+</body>
+</html>
