@@ -38,7 +38,7 @@
      * If valid, convert the volume by the appropriate rate.
      */
     if (!isNaN(initialVolume)) {
-        parseFloat(initialVolume);
+        initialVolume = parseFloat(initialVolume);
         convertedVolume = initialVolume * rate;
         // Round the distance to two digits after the decimal.
         const digits = 2;
