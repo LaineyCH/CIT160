@@ -41,7 +41,8 @@
         * If valid, convert the volume by the appropriate rate.
         */
         if (!isNaN(startOdo) && !isNaN(endOdo)) {
-            parseFloat(startOdo, endOdo);
+            startOdo = parseFloat(startOdo);
+            endOdo = parseFloat(endOdo);
             totDistance = endOdo-startOdo;
             // Round the distance to two digits after the decimal.
             const digits = 2;
@@ -59,7 +60,7 @@
         calculateDistance();
         let gallons = document.getElementById("gallonsUsed").value;
         if (!isNaN(gallons)) {
-            parseFloat(gallons);
+            gallons = parseFloat(gallons);
             let milesPerGallon = totDistance / gallons;
             // Round the distance to two digits after the decimal.
             const digits = 2;
