@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Elaine Henson">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quarts to Liters</title>
+<style>
+    body {
+        background-color:paleturquoise;
+        padding: 2em;
+    }
+    h1, p {
+            text-align: center;
+        }
+    * {
+        color: #000;
+    }
+    #root {
+            display:block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: max-content;
+        }
+</style>
+<script>
+/* Defining Table
+ * Input: User type in a volume in quarts or liters
+ * Processing: Converts the volume from quarts to liters or vise versa
+ * Output: The converted volume
+ */
+
+ function convertVolume(volumeInputId, volumeOutputId, rate) {
+    // Declare and initialise variables.
+    let initialVolume = document.getElementById(volumeInputId).value.trim();
+    let convertedVolume = 0;
+    /* Check that the input value is valid, if not, send an error message.
+     * If valid, convert the volume by the appropriate rate.
+     */
+    if (!isNaN(initialVolume)) {
+        parseFloat(initialVolume);
+        convertedVolume = initialVolume * rate;
+        // Round the distance to two digits after the decimal.
+        const digits = 2;
+        let multiplier = Math.pow(10, digits);
+        convertedVolume = Math.round(convertedVolume * multiplier) / multiplier;
+    } else {
+        convertedVolume = "error";
+    }
+    // Display the converted volume in liters, in the appropriate text box.
+    document.getElementById(volumeOutputId).value = convertedVolume;  
+};
+
+function clearInputFields() {
+    // Clears all of the text fields
+    document.getElementById('quartsInputBox').value = "";
+    document.getElementById('litersInputBox').value = "";
+};
+
+</script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- Display heading -->    
+        <h1>Quarts - Liters Conversion Tool</h1> 
+        <br>
+        <p>Enter a volume either in quarts or liters to see the conversion.</p>
+        <br> 
+        <table>
+            <col style="width:9em">
+            <col style="width:1em">
+            <col style="width:auto">
+            <tr>
+                <td>Volume in QUARTS:</td>
+                <td><input type="text" id="quartsInputBox" style="width: 6em; text-align:right;" onkeyup="convertVolume('quartsInputBox', 'litersInputBox', 0.946353)"></td>
+                <td style="padding:5px;">qt</td>
+            </tr>
+            <tr>
+                <td>Volume in LITERS:</td>
+                <td><input type="text" id="litersInputBox" style="width: 6em; text-align:right" onkeyup="convertVolume('litersInputBox', 'quartsInputBox', 1.05669)"></td>
+                <td style="padding:5px;">L</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button id="clearInput" type="button" onclick="clearInputFields()">Clear</button></td>
+                <td></td>
+            </tr>
+    </div>
+</body>
+</html>

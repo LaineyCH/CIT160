@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Elaine Henson">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MPG Calculator</title>
+<style>
+    body {
+        background-color:paleturquoise;
+        padding: 2em;
+    }
+    * {
+        color: #000;
+    }
+    #root {
+        display:block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: max-content;
+        }
+        h1, h2, p {
+            text-align: center;
+        }
+
+</style>
+<script>
+/* Defining Table
+ * Input: User inputs a start and end odometer reading, and gallons of fuel used.
+ * Processing: Calculates the distance travelled and how many miles were travelled per gallon of fuel.
+ * Output: The calculated miles per gallon value.
+ */
+ 
+ var totDistance = 0; // Declare totDistance as a global variale
+
+    function calculateDistance() {
+        // Declare and initialise variables.
+        let startOdo = document.getElementById("startOdometer").value.trim();
+        let endOdo = document.getElementById("endOdometer").value.trim();
+        /* Check that the input value is valid, if not, send an error message.
+        * If valid, convert the volume by the appropriate rate.
+        */
+        if (!isNaN(startOdo) && !isNaN(endOdo)) {
+            parseFloat(startOdo, endOdo);
+            totDistance = endOdo-startOdo;
+            // Round the distance to two digits after the decimal.
+            const digits = 2;
+            let multiplier = Math.pow(10, digits);
+            let roundDistance = Math.round(totDistance * multiplier) / multiplier;
+            // Display the converted volume in liters, in the appropriate text box.
+            document.getElementById("totalDistance").value = roundDistance; 
+        } else {
+            document.getElementById("totalDistance").value = "error";
+        }
+        
+    };
+
+    function calculateMilesPerGallon() {
+        calculateDistance();
+        let gallons = document.getElementById("gallonsUsed").value;
+        if (!isNaN(gallons)) {
+            parseFloat(gallons);
+            let milesPerGallon = totDistance / gallons;
+            // Round the distance to two digits after the decimal.
+            const digits = 2;
+            let multiplier = Math.pow(10, digits);
+            milesPerGallon = Math.round(milesPerGallon * multiplier) / multiplier;
+            // Display the calculated miles per gallon value.
+            document.getElementById("milesPerGallon").value = milesPerGallon;
+        } else {
+            document.getElementById("milesPerGallon").value = "error";
+        }
+    };
+
+    function clearTextBoxes() {
+        // Clears all of the text fields
+        document.getElementById("startOdometer").value = "";
+        document.getElementById("endOdometer").value = "";
+        document.getElementById("totalDistance").value = "";
+        document.getElementById("gallonsUsed").value = "";
+        document.getElementById("milesPerGallon").value = "";
+    };
+
+</script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- Display heading -->
+        <h1>MPG Calculator</h1> 
+        <h2>Work out your Mileage in Miles per Gallon</h2>
+        <p>Enter the start and end of journey odometer readings, and the number of gallons of gasoline used.</p>
+        <br> 
+        <table style="width:100%">
+            <col style="width:12em">
+            <col style="width:1em">
+            <col style="width:1em">
+            <col style="width:12em">
+            <col style="width:12em">
+            <col style="width:1em">
+            <col style="width:auto">
+            <tr>
+                <td>Start odometer reading:</td>
+                <td><input type="text" id="startOdometer" style="width: 6em; text-align:right;"></td>
+                <td style="padding:5px;">mi</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>End odometer reading:</td>
+                <td><input type="text" id="endOdometer" style="width: 6em; text-align:right"></td>
+                <td style="padding:5px;">mi</td>
+                <td><button id="calculate" type="button" onclick="calculateDistance()">Calculate distance</button></td>
+                <td>Total distance travelled:</td>
+                <td><input type="text" id="totalDistance" style="width: 6em; text-align:right"></td>
+                <td style="padding:5px;">mi</td>
+            </tr>
+            <tr>
+                
+            </tr>
+            <tr>
+                <td>Gallons of gasoline used:</td>
+                <td><input type="text" id="gallonsUsed" style="width: 6em; text-align:right"></td>
+                <td style="padding:5px;">gal</td>
+                <td><button id="calcMilesPerGallon" type="button" onclick="calculateMilesPerGallon()">Calculate mi/gal</button></td>
+                <td>Miles per Gallon:</td>
+                <td><input type="text" id="milesPerGallon" style="width: 6em; text-align:right"></td>
+                <td>mi/gal</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><button id="calculate" type="button" onclick="clearTextBoxes()">Clear All</button></td>
+                <td></td>
+            </tr>
+    </div>
+</body>
+</html>
