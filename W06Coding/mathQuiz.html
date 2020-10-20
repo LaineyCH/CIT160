@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Elaine Henson">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz</title>
+    <style>
+        body {
+            background-color: paleturquoise;
+            padding: 2em;
+            font-size: large;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        * {
+            color: #000;
+        }
+        #root {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: max-content;
+        }
+    </style>
+
+    <script>
+        /* Defining Table
+         * Input: Two numbers and a mathimatiacl operator.
+         * Processing: Calculates the result of applying the operator to the numbers.
+         * Output: The result.
+         */
+        function calculateResult() {
+            // Declare variales
+            let chosenOperator = document.getElementById("operator").value;
+            let number1 = Number(document.getElementById("firstNumber").value);
+            let number2 = Number(document.getElementById("secondNumber").value);
+            let guess = Number(document.getElementById("userAnswer").value);
+            let answer;
+
+            // Do a calculation based on which operator was chosen by the user.
+            switch(chosenOperator) {
+                case "plus":
+                    answer = number1 + number2;
+                    break;
+                case "minus":
+                    answer = number1 - number2;
+                    break;
+                case "times":
+                    answer = number1 * number2;
+                    break;
+                case "divide":
+                    answer = number1 / number2;
+                    break;
+            }   
+            // Display a message telling the user whether they got the answer right or not.
+            if (answer == guess) {
+                document.getElementById("message").innerHTML = "Correct! Well done!"
+            } else {
+                document.getElementById("message").innerHTML = "Incorrect, please try again."
+            }
+            
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>Math Quiz</h1>
+        <h2>Test Your Math Skills!</h2>
+        <br>
+        <p>Enter an equation and see if your calculation is correct.</p>
+        <br>
+        <!-- Prompt the user to enter a numer, choose an arithmetic operator, a second number,
+            and their answer to the equation created. -->
+        <input type="text" id="firstNumber" style="width:3em; height: 2em;">
+        <select id="operator" name="operator" style="font-size:xx-large;">
+            <option value="plus">+</option>
+            <option value="minus">-</option>
+            <option value="times">x</option>
+            <option value="divide">÷</option>
+        </select>
+        <input type="text" id="secondNumber" style="width:3em; height: 2em;">
+        <span>=</span>
+        <input type="text" id="userAnswer" style="width:3em; height: 2em;">
+        <!-- Run the calculateResult() function when the button is clicked. -->
+        <button id="checkAnswer" onclick="calculateResult()">Check Answer</button>
+        <br>
+        <br>
+        <!-- Display a message telling the user wherther or not they got the answer right. -->
+        <div id="message"></div>
+    </div>
+</body>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Elaine Henson">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footwear</title>
+    <style>
+        body {
+            background-color: paleturquoise;
+            padding: 2em;
+        }
+        * {
+            color: #000;
+        }
+        #root {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: max-content;
+        }
+    </style>
+
+    <script>
+        /* Defining Table
+         * Input: A weather type from the user.
+         * Processing: Finds the suitable footwear for the weather type given.
+         * Output: The suitable footwear.
+         */
+
+        function whichFootwear(chosenWeatherID) {
+            let chosenWeather;
+            /* Check that if the user has entered a value in the "othet" textbox,
+             * tha they have also selected the "other" radio button. If they have, set
+             * chosenWeather to the the textbox input value, if not, exit the function.
+             * If any of the other radio buttons are selected, set chosenWeather to
+             * that radio button's value.
+             */
+            if (chosenWeatherID == "other") {
+                if (!document.getElementById("other").checked) {
+                    return;
+                }
+                chosenWeather = document.getElementById("otherWeather").value;
+            } else {
+                chosenWeather = document.getElementById(chosenWeatherID).value;
+            }
+            // Allocate footware based on the value of chosenWeather.
+            let footwear = "";
+            switch (chosenWeather.toLowerCase()) {
+                case "hot":
+                    footwear = "Sandals";
+                    break;
+                case "raining":
+                case "rain":
+                case "rainy":
+                    footwear = "Galoshes";
+                    break;
+                case "snowing":
+                case "snow":
+                    footwear = "Boots";
+                    break;
+                default:
+                    footwear = "Shoes";
+            }
+            // Display the chosen footware to the user.
+            document.getElementById("footwearSelected").innerHTML = footwear;
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>Which Footwear Should I Wear?</h1>
+        <p>What is the weather like today?</p>
+        <div>
+            <!-- Display radio buttons for various weather types for the user to choose from, and an alternative
+                text field where the user can type in their own -->
+            <input type="radio" id="sunny" name="weather" value="sunny" oninput="whichFootwear('sunny')">
+            <label for="sunny">Sunny</label><br>
+            <input type="radio" id="hot" name="weather" value="hot" oninput="whichFootwear('hot')">
+            <label for="hot">Hot</label><br>
+            <input type="radio" id="humid" name="weather" value="humid" oninput="whichFootwear('humid')">
+            <label for="humid">Humid</label><br>
+            <input type="radio" id="overcast" name="weather" value="overcast" oninput="whichFootwear('overcast')">
+            <label for="overcast">Overcast</label><br>
+            <input type="radio" id="raining" name="weather" value="raining" oninput="whichFootwear('raining')">
+            <label for="raining">Raining</label><br>
+            <input type="radio" id="snowing" name="weather" value="snowing" oninput="whichFootwear('snowing')">
+            <label for="snowing">Snowing</label><br>
+            <input type="radio" id="other" name="weather" value="other" oninput="whichFootwear('other')">
+            <label for="other">Other</label> <input type="text" id="otherWeather" onchange="whichFootwear('other')">
+        </div>
+        <br>
+        <!-- Display the reccomended footwear for the weather to the user -->
+        <p>The footwear you should wear today is:</p>
+        <div id="footwearSelected" style="font-size: larger;"></div>
+    </div>
+</body>
+
+</html>
