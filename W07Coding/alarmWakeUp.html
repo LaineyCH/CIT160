@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Elaine Henson">
+    <!-- Import scripts and stylesheets for bootstrap to work -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Alarm</title>
+
+    <style>
+        .jumbotron {
+            background-color:darkturquoise;
+            color: black;
+        }
+    </style>
+
+    <script>
+        // Asign audio files to variables.
+        var rooster = new Audio("Rooster-Crow-A-www.fesliyanstudios.com.mp3");
+        var catPurr = new Audio("catPurr.m4a");
+
+
+        /* Defining Table
+         * Input: The current day's date and day of the week.
+         * Processing: Check if the current day is a weekend day or a holiday (the holidays checked for are 1 Jan,
+         * 4 July & 25 Dec), in which case the user can sleep in; or a work day, and the user has to wake up.
+         * Output: Display a message with picure and audio, to show whethrer the user has to wake up or can sleep in.
+         */
+
+        function mayISleepIn() {
+            // Declare and initialise variables.
+            var now = new Date();
+            var month = now.getMonth();
+            var dayOfMonth = now.getDate();
+            var dayOfWeek = now.getDay();
+            let holiday = false;
+
+            // Test code - to test for days other that the current day.
+            dayOfWeek = 3;
+            dayOfMonth = 26;
+            month = 10;
+
+            //if the current is a holiday, set holiday to true.
+            if (((month == 1 && dayOfMonth == 1) || (month == 7 && dayOfMonth == 4)) || (month == 12 && dayOfMonth == 25)) {
+                holiday = true;
+            }
+
+            /* If the current day is weekend or a holiday, display a message and image to the user telling them that
+             * they may sleep in, and play a rooster crowing audio file. Otherwise display a message with image that the
+             * user must get up, and play the cat purr audio file.
+             */
+            if (dayOfWeek % 6 == 0 || holiday) {
+                catPurr.play();
+                $("#message").html("Go ahead. Sleep In.");
+                $("#catPicture").prop("hidden", false);
+            } else {
+                rooster.play();
+                $("#message").html("No! Get up!!");
+                $("#roosterPicture").prop("hidden", false);
+
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>Good Morning</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- Display a button for the user to click, that runs the mayISleepIn() function. -->
+            <div class="col-12 text-center"><button onclick="mayISleepIn()" class="btn btn-warning">May I Sleep in?</button></div> 
+        </div>
+        <div class="row mt-3">
+            <!-- Display a message to the user, either to sleep in, or to get up. -->
+            <h1 class="col-12 text-center" id="message"></h1>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <!-- Display an image, as appropriate. -->
+                <img id="roosterPicture" src="rooster.png" class="w-50" alt="Rooster Crowing" hidden>
+                <img id="catPicture" src="cat.png" class="w-50" alt="Cat Sleeping" hidden>
+            </div>
+        </div>
+    </div>
+
+</body>

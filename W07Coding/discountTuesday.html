@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Elaine Henson">
+    
+    <!-- Import scripts and stylesheets for bootstrap to work -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Discount Calculator</title>
+
+    <style>
+        .jumbotron {
+            background-color: blueviolet;
+            color: white;
+        }
+        .monospace {
+            font-family: "Lucida Console";
+        }
+        input{
+            text-align: right;
+        }
+    </style>
+
+    <script>
+        /* Defining Table
+         * Input: Sale subtotal.
+         * Processing: Checks whether a 10% discount should be applied (parameters are sale subtotal should be
+         * greater than $50 AND the day of purchase must be Tuesday OR Wednesday), then calculates the discount if applicable
+         * and subtracts it from the subtotal.
+         * Adds sales tax at 6%, and calculates the sales total.
+         * Output: Sale total.
+         */
+        function calculateDiscount() {
+            var dayOfWeek = new Date().getDay();
+            dayOfWeek = 2;   //Line of test code, to change the day of the week.
+            let saleSubtotal = Number($("#subtotal").val());
+            let discount = 0;
+            let salesTax = 0.06;
+            let total = 0;
+            $("#discountRow").prop("hidden", true);
+
+            // Check if the subtotal is > $50 and if the day of the week is Tuesday or Wednesday, if so, subtract a 10% discount from the subtotal.
+            if (saleSubtotal >= 50 && (dayOfWeek == 2 || dayOfWeek== 3)) {
+                discount = (saleSubtotal * 0.1).toFixed(2);
+                saleSubtotal -= discount;
+                $("#discount").html(discount);
+                $("#discountRow").prop("hidden", false);
+            }
+            // Add a 6% sales tax to the subrtotal and display the sale total, including tax.
+            $("#tax").html((saleSubtotal * salesTax).toFixed(2));
+            saleTotal = (saleSubtotal * (1 + salesTax)).toFixed(2);
+
+            $("#total").html(saleTotal);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>Thank You for Shopping at H-Mart</h1> 
+    </div>
+    <div class="container-md monospace text-right">
+        <div class="row">
+            <!-- Prompt the user to enter a sale subtotal amount. Run the calculateDiscount() function when the user hits enter, or clicks the button. -->
+            <div class="col-6"><span>Enter sale subtotal:</span><span class="ml-3">&emsp;$</span></div>
+            <div class="col-2"><input class="form-control" type="text" id="subtotal" placeholder="0.00" onchange="calculateDiscount()" ></div>
+            <div class="col-4 text-left"><button class="ml-3 btn btn-outline-dark" onclick="calculateDiscount()">Total</button></div>
+          </div>
+          <!-- display the discount, but only if a discount applies. -->
+          <div class="row" id="discountRow" style="color:red" hidden>
+            <div class="col-6"><span>10% Discount applied:</span><span class="ml-3">&nbsp;-&nbsp;$</span></div>
+            <div class="col-2"><span id="discount"></span></div>
+          </div>
+          <div class="row">
+            <!-- Display the sales tax. -->
+            <div class="col-6"><span>Tax:</span><span class="ml-3">&emsp;$</span></div>
+            <div class="col-2"><span id="tax"></span></div>
+          </div>
+          <div class="row" style="font-weight: bold;">
+            <!-- Display the sale total. -->
+            <div class="col-6"><span>TOTAL:</span><span class="ml-3">&emsp;$</span></div>
+            <div class="col-2"><span id="total"></span></div>
+          </div>
+        </div>   
+    </div>
+</body>
