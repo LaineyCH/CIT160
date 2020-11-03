@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Elaine Henson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Math Quiz</title>
+        <style>
+            body {
+                background-color: paleturquoise;
+                padding: 2em;
+                font-size: large;
+            }
+            h1, h2 {
+                text-align: center;
+            }
+            * {
+                color: #000;
+            }
+            #root {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: max-content;
+            }
+        </style>
+        <script>
+
+            /* Defining Table
+            * Input: A positive integer from the user.
+            * Processing: Calculates the sum of all odd numbers from 1 to n, where n is the user input.
+            *             Also calculates the square root of the sum, as, interestingly, the sum will always
+            *             be a perfect square (rounding errors will sometimes mess this up). https://youtu.be/IJ0EQCkJCTc
+            * Output: The sum and the square root.
+            */
+            function sumOdds() {
+
+                let userNumber = document.getElementById("userInteger").value;
+                document.getElementById("integer").innerHTML = userNumber;
+
+                // Check that the user input is a number, it's a whole number, and it's positive, display an alert if it is not and end.
+                if (isNaN(userNumber) || userNumber.includes(".") || userNumber <= 0) {
+                    document.getElementById("result").innerHTML = "";
+                    document.getElementById("integer").innerHTML = "n";
+                    document.getElementById("squareRoot").innerHTML = "";
+                    alert("Please enter an integer");
+                    return;
+                }
+                
+                // Check whether the number is odd or even. Subtract one if the number is even.
+                userNumber = Number(userNumber);
+                let sumTotal = 0;
+                if (userNumber % 2 == 0) {
+                    userNumber -= 1
+                }
+
+                // Add all odd numbers from 1 to n, where n is userNumber.
+                for ( ; userNumber > 0; userNumber -= 2) {
+                    sumTotal += userNumber;
+                }
+                
+                // Display result.
+                document.getElementById("result").innerHTML = sumTotal;
+                // Calculate square root of sumTotal and display the result.
+                let square = Math.sqrt(sumTotal);
+                document.getElementById("squareRoot").innerHTML = square;
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="root">
+            <!-- Prompt the user to enter an integer. -->
+            Please enter any positive integer: <input type="text" id="userInteger" placeholder="n" onchange="sumOdds()">
+            <button onclick="sumOdds()">Calculate</button>
+            <br>
+            <br>
+            <!-- Display the results. -->
+            The sum of all the odd numbers from 1 to <span id="integer">n</span> is: <span id="result"></span>
+            <br>
+            <br>
+            The sqaure root of the sum is: <span id="squareRoot"></span>
+        </div>
+        
+    </body> 
+</html>
