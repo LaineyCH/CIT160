@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Elaine Henson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Five Times Table</title>
+        <style>
+            body {
+                background-color: paleturquoise;
+                padding: 2em;
+                font-size: large;
+            }
+            * {
+                color: #000;
+            }
+            #root {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: max-content;
+            }
+        </style>
+        <script>
+            /* Defining Table
+            * Input: None
+            * Processing: Use a loop to calculate and display the 5 times table.
+            * Output: The five times table from 1-12
+            */
+            function fiveTimesTable() {
+                let output = "";
+                for (let i = 1; i <= 12; i++) {
+                    if (i < 10) output += " ";
+                    output += i + " x 5 = " + (i * 5) + "<br>";
+                }
+                document.getElementById("display").innerHTML = output;
+            }
+        </script>
+    </head>
+
+    <body onload="fiveTimesTable()">
+        <div id="root">
+            <h1>The Five Times Table</h1>
+            <!-- Display the 5 times table. -->
+            <pre><div id="display"></div></pre>
+        </div>
+    </body> 
+</html>

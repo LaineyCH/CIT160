@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Elaine Henson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Powers of Two</title>
+        <style>
+            body {
+                background-color: paleturquoise;
+                padding: 2em;
+                font-size: large;
+            }
+            * {
+                color: #000;
+            }
+            #root {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: max-content;
+            }
+        </style>
+        <script>
+            /* Defining Table
+            * Input: None
+            * Processing: Use a loop to calculate and display the powers of two from 2^0 to 2^31.
+            * Output: The series of powers of 2.
+            */
+            function powersOfTwo() {
+                let output = "";
+                for (let i = 0; i <= 31; i++) {
+                    if (i != 31) {
+                        output += Math.pow(2, i) + ", ";
+                    } else {
+                    output += Math.pow(2, i);
+                    }
+                }
+                document.getElementById("display").innerHTML = output;
+            }
+        </script>
+    </head>
+
+    <body onload="powersOfTwo()">
+        <div id="root">
+            <h1>The Powers of Two</h1>
+            <!-- Display the powers of 2. -->
+            <div id="display"></div>
+        </div>
+    </body> 
+</html>
