@@ -28,15 +28,11 @@
             * Output: The series of powers of 2.
             */
             function powersOfTwo() {
-                let output = "";
+                let output = [];
                 for (let i = 0; i <= 31; i++) {
-                    if (i != 31) {
-                        output += Math.pow(2, i) + ", ";
-                    } else {
-                    output += Math.pow(2, i);
-                    }
+                    output.push(Math.pow(2, i));
                 }
-                document.getElementById("display").innerHTML = output;
+                document.getElementById("display").innerHTML = output.join(', ');
             }
         </script>
     </head>
