@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+    <html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Elaine Henson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wind Chill</title>
+        <style>
+            body {
+                background-color: paleturquoise;
+                padding: 2em;
+                font-size: large;
+            }
+            * {
+                color: #000;
+            }
+            #root {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: max-content;
+            }
+        </style>
+        <script>
+            /* Defining Table
+            * Input: A temperature in °F, and a wind speed in mph.
+            * Processing: Calculate the wind chill factor using th einputs.
+            * Output: The wind chill factor in °F.
+            */
+            function windChill(tempF, speed) {
+                windChillFactor = 35.74 + 0.6215 * tempF - 35.75 * speed**0.16 + 0.4275 * tempF * speed**0.16;
+                return windChillFactor;
+            }
+
+            /* Defining Table
+            * Input: 2 inputs from the user: a temperature in °F, and a wind speed in mph.
+            * Processing: Call function "windChill()" with the user supplied values for the parameters.
+            * Output: Display the return of "windChill()".
+            */
+            function doInputOutput() {
+                let temperature = Number(document.getElementById("Temperature").value);
+                let windSpeed = Number(document.getElementById("WindSpeed").value);
+                let windChillCalc = windChill(temperature, windSpeed);
+                document.getElementById("displayOutput").removeAttribute("hidden");
+                document.getElementById("display").innerHTML = windChillCalc.toFixed(2);
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="root">
+            <h1>Calculate the Wind Chill Factor</h1>
+            <table>
+                <tr>
+                    <td>Please enter a temperature in Fahrenheit:</td>
+                    <td><input type="text" id="Temperature" size="5"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Please enter a wind speed in miles per hour:</td>
+                    <td><input type="text" id="WindSpeed" size="5"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><button onclick="doInputOutput()">Wind Chill</button></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr id="displayOutput" hidden>
+                    <td>The windchill factor is:</td>
+                    <td><div id="display"></div></td>
+                    <td>°F</td>
+                </tr>
+            </table>
+        </div>
+    </body> 
+</html>
