@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+    <html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Elaine Henson">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Invest</title>
+        <style>
+            body {
+                background-color: paleturquoise;
+                padding: 2em;
+                font-size: large;
+            }
+            * {
+                color: #000;
+            }
+            #root {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: max-content;
+            }
+        </style>
+        <script>
+            /* Defining Table
+            * Input: User values for principle value, annual interest rate, the number of years the investment is
+            *  over, and the number of payment periods per year.
+            * Processing: Fetch the user inputs, and convert them to numbers. Call the computeFutureValue() function
+            *  using the values collected (with some manipulation).
+            * Output: Display the result received from computeFutureValue().
+            */
+            function doFV() {
+               let principal = Number(document.getElementById("principalValue").value);
+               let annualRate = Number(document.getElementById("annualRate").value);
+               let years = Number(document.getElementById("numYears").value);
+               let periodsPerYear = Number(document.getElementById("numPeriods").value);
+               let future = computeFutureValue(principal, (annualRate / periodsPerYear), (years * periodsPerYear));
+               document.getElementById("outputFutureValue").innerHTML = future;
+            }
+
+            /* Defining Table
+            * Input: a: the investment amount sometimes called the principal
+                     r: the growth rate per period
+                     n: the total number of periods throughout the life of the investment.
+            * Processing: use a formula to calculate the future value of the investment, using a, r and n. 
+            * Output: the value of the calculation.
+            */
+            function computeFutureValue(a, r, n) {
+                return "$" + Math.round((a * (1 + r) ** n) * 100) / 100;
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="root">
+            <h1>Investment Calculator</h1>
+            <table>
+                <tr>
+                    <td>Amount invested (principal):</td>
+                    <td><input type="text" id="principalValue" size="5"></td>
+                </tr>
+                <tr>
+                    <td>Annual rate (example: 0.06):</td>
+                    <td><input type="text" id="annualRate" size="5"></td>
+                </tr>
+                <tr>
+                    <td>Number of years:</td>
+                    <td><input type="text" id="numYears" size="5"></td>
+                </tr>
+                <tr>
+                    <td>Periods per year:</td>
+                    <td><input type="text" id="numPeriods" size="5"></td>
+                </tr>
+                <tr>
+                    <td><button onclick="doFV()" style="font-size:large; font-family: 'Times New Roman', Times, serif; ">Compute future value</button></td>
+                    <td><div id="outputFutureValue"></div></td>
+                </tr>
+            </table>
+        </div>
+    </body> 
+</html>
